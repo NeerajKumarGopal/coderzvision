@@ -65,15 +65,5 @@ pipeline {
                 }
             }
         }
-
-
-        post {
-            always {
-                echo "Cleaning up..."
-                dir('terraform') {
-                    sh 'terraform destroy -auto-approve'
-                }
-            }
-        }
     }
 }
