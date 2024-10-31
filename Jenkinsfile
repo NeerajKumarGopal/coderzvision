@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        AWS_CREDENTIALS = credentials('AWS_CREDENTIALS')
-        EC2_IP = "YOUR_EC2_IP" // Replace with EC2 IP
+        AWS_CREDENTIALS = credentials("AWS_CREDENTIALS")
+        EC2_IP = "EC2_IP"
         SSH_KEY = credentials('ec2-ssh-key')
     }
 
