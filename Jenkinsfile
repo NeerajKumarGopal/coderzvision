@@ -10,16 +10,17 @@ pipeline {
     stages {
         stage('Provision Infrastructure with Terraform') {
             steps {
-                script {
-                    withAWS(credentials: 'AWS_CREDENTIALS', region: 'ap-south-1') {
-                        bat 'terraform init'
-                        bat 'terraform apply -auto-approve'
-                        EC2_IP = bat(script: "terraform output -raw ec2_ip_address", returnStdout: true).trim()
+                dir('terraform') {
+                    script {
+                        withAWS(credentials: 'AWS_CREDENTIALS', region: 'ap-south-1') {
+                            bat 'terraform init'
+                            bat 'terraform apply -auto-approve'
+                            EC2_IP = bat(script: "terraform output -raw ec2_ip_address", returnStdout: true).trim()
+                        }
                     }
                 }
             }
         }
-
 
         stage('Install Docker on EC2') {
             steps {
