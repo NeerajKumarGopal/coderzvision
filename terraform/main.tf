@@ -2,34 +2,6 @@ provider "aws" {
   region = "ap-south-1"  
 }
 
-
-  provisioner "file" {
-    source      = "jenkins_key.pub"
-    destination = "~/.ssh/authorized_keys"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = var.private_key
-      host        = self.public_ip
-    }
-  }
-  
-  provisioner "remote-exec" {
-    inline = [
-      "mkdir -p ~/.ssh",
-      "cat /tmp/jenkins_key.pub >> ~/.ssh/authorized_keys",
-      "chmod 600 ~/.ssh/authorized_keys"
-    ]
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = var.private_key
-      host        = self.public_ip
-    }
-  }
-
 resource "aws_vpc" "my_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -92,9 +64,33 @@ resource "aws_instance" "lamp_server" {
   subnet_id     = aws_subnet.my_subnet.id
   key_name      = "coderzvision"
   vpc_security_group_ids = [aws_security_group.lamp_sg.id]
-  
-  
 
+  provisioner "file" {
+    source      = "jenkins_key.pub"
+    destination = "~/.ssh/authorized_keys"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = var.private_key
+      host        = self.public_ip
+    }
+  }
+  
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p ~/.ssh",
+      "cat /tmp/jenkins_key.pub >> ~/.ssh/authorized_keys",
+      "chmod 600 ~/.ssh/authorized_keys"
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = var.private_key
+      host        = self.public_ip
+    }
+  }
  
   
   user_data = <<-EOF
