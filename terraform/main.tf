@@ -95,12 +95,12 @@ resource "aws_instance" "lamp_server" {
   
   user_data = <<-EOF
               #!/bin/bash
-			  sudo su
+	      sudo su
               apt update -y
               apt install -y apache2 mysql-server php php-mysql
               systemctl start apache2
               systemctl enable apache2
-			  apt update -y
+              apt update -y
               apt install -y docker.io docker-compose
               systemctl start docker
               systemctl enable docker
