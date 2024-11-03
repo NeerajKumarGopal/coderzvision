@@ -65,5 +65,15 @@ pipeline {
                 }
             }
         }
+
+        post {
+        always {
+            script {
+                // Ensure Terraform is destroyed regardless of build status
+                echo 'Destroying Terraform resources...'
+                sh 'terraform destroy -auto-approve'
+            }
+        }
     }
+}
 }
