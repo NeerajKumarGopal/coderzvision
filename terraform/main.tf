@@ -66,27 +66,6 @@ resource "aws_route_table_association" "my_route_table_assoc" {
   route_table_id = aws_route_table.my_route_table.id
 }
 
-  
-  
-  
-  user_data = <<-EOF
-              #!/bin/bash
-			  sudo su
-              apt update -y
-              apt install -y apache2 mysql-server php php-mysql
-              systemctl start apache2
-              systemctl enable apache2
-			  apt update -y
-              apt install -y docker.io docker-compose
-              systemctl start docker
-              systemctl enable docker
-              EOF
-
-  tags = {
-    Name = "LAMP_Server"
-  }
-}
-
 resource "aws_security_group" "lamp_sg" {
   name        = "lamp_security_group"
   description = "security group"
@@ -114,3 +93,22 @@ resource "aws_security_group" "lamp_sg" {
   }
 }
 
+ 
+  
+  user_data = <<-EOF
+              #!/bin/bash
+			  sudo su
+              apt update -y
+              apt install -y apache2 mysql-server php php-mysql
+              systemctl start apache2
+              systemctl enable apache2
+			  apt update -y
+              apt install -y docker.io docker-compose
+              systemctl start docker
+              systemctl enable docker
+              EOF
+
+  tags = {
+    Name = "LAMP_Server"
+  }
+}
