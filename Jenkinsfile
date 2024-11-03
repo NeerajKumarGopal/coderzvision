@@ -67,13 +67,13 @@ pipeline {
         }
 
         post {
-        always {
-            script {
-                // Ensure Terraform is destroyed regardless of build status
-                echo 'Destroying Terraform resources...'
-                bat 'terraform destroy -auto-approve'
+            always {
+                script {
+                    // Ensure Terraform is destroyed regardless of build status
+                    echo 'Destroying Terraform resources...'
+                    bat 'terraform destroy -auto-approve'
+                }
             }
         }
     }
-}
 }
