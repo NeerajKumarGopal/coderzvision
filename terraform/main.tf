@@ -16,7 +16,7 @@ resource "aws_instance" "lamp_server" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("~/.ssh/authorized_keys/jenkins_key")
+      private_key = var.private_key
       host        = self.public_ip
     }
   }
@@ -31,7 +31,7 @@ resource "aws_instance" "lamp_server" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("~/.ssh/authorized_keys/jenkins_key")
+      private_key = var.private_key
       host        = self.public_ip
     }
   }
