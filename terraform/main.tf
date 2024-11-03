@@ -11,7 +11,7 @@ resource "aws_instance" "lamp_server" {
   
   provisioner "file" {
     source      = "jenkins_key.pub"
-    destination = ""/home/ubuntu/.ssh/authorized_keys""
+    destination = "/home/ubuntu/.ssh/authorized_keys"
 
     connection {
       type        = "ssh"
