@@ -72,7 +72,7 @@ resource "aws_instance" "lamp_server" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("C:/Neeraj/coderzvision-assessement/coderzvision/terraform/jenkins_key.pem")
+      private_key = file("C:/Neeraj/coderzvision-assessement/coderzvision/terraform/coderzvision.pem")
       host        = self.public_ip
     }
   }
@@ -87,7 +87,7 @@ resource "aws_instance" "lamp_server" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("C:/Neeraj/coderzvision-assessement/coderzvision/terraform/jenkins_key.pem")
+      private_key = file("C:/Neeraj/coderzvision-assessement/coderzvision/terraform/coderzvision.pem")
       host        = self.public_ip
     }
   }
