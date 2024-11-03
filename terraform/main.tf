@@ -11,12 +11,12 @@ resource "aws_instance" "lamp_server" {
   
   provisioner "file" {
     source      = "jenkins_key.pub"
-    destination = "/home/ubuntu/.ssh/authorized_keys"
+    destination = "~/.ssh/authorized_keys"
 
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("/home/ubuntu/.ssh/authorized_keys/jenkins_key")
+      private_key = file("~/.ssh/authorized_keys/jenkins_key")
       host        = self.public_ip
     }
   }
@@ -31,7 +31,7 @@ resource "aws_instance" "lamp_server" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("~/.ssh/jenkins_key")
+      private_key = file("~/.ssh/authorized_keys/jenkins_key")
       host        = self.public_ip
     }
   }
