@@ -12,9 +12,9 @@ pipeline {
             steps {
                 script {
                     withAWS(credentials: 'AWS_CREDENTIALS', region: 'ap-south-1') {
-                        sh 'terraform init'
-                        sh 'terraform apply -auto-approve'
-                        EC2_IP = sh(script: "terraform output -raw ec2_ip_address", returnStdout: true).trim()
+                        bat 'terraform init'
+                        bat 'terraform apply -auto-approve'
+                        EC2_IP = bat(script: "terraform output -raw ec2_ip_address", returnStdout: true).trim()
                     }
                 }
             }
