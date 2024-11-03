@@ -2,14 +2,7 @@ provider "aws" {
   region = "ap-south-1"  
 }
 
-resource "aws_instance" "lamp_server" {
-  ami           = "ami-0dee22c13ea7a9a67"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.my_subnet.id
-  key_name      = "coderzvision"
-  vpc_security_group_ids = [aws_security_group.lamp_sg.id]
-  
-  
+
   provisioner "file" {
     source      = "jenkins_key.pub"
     destination = "~/.ssh/authorized_keys"
@@ -92,6 +85,15 @@ resource "aws_security_group" "lamp_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_instance" "lamp_server" {
+  ami           = "ami-0dee22c13ea7a9a67"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.my_subnet.id
+  key_name      = "coderzvision"
+  vpc_security_group_ids = [aws_security_group.lamp_sg.id]
+  
+  
 
  
   
