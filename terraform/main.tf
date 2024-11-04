@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"  
+  region = "us-east-1"  
 }
 
 resource "aws_vpc" "my_vpc" {
@@ -59,7 +59,7 @@ resource "aws_security_group" "lamp_sg" {
 }
 
 resource "aws_instance" "lamp_server" {
-  ami           = "ami-0dee22c13ea7a9a67"
+  ami           = "ami-0866a3c8686eaeeba"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.my_subnet.id
   key_name      = "coderzvision"
