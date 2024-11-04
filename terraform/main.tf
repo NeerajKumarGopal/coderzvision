@@ -66,13 +66,13 @@ resource "aws_instance" "lamp_server" {
   vpc_security_group_ids = [aws_security_group.lamp_sg.id]
 
   provisioner "file" {
-    source      = "C:/Neeraj/coderzvision-assessement/coderzvision/terraform/coderzvision_key.pub"
+    source      = "C:/Users/jenkins/coderzvision_key.pub"
     destination = "/home/ubuntu/.ssh/authorized_keys"
 
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("C:/Neeraj/coderzvision-assessement/coderzvision/terraform/coderzvision.pem")
+      private_key = file("C:/Users/jenkins/coderzvision.pem")
       host        = self.public_ip
     }
   }
@@ -87,7 +87,7 @@ resource "aws_instance" "lamp_server" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("C:/Neeraj/coderzvision-assessement/coderzvision/terraform/coderzvision.pem")
+      private_key = file("C:/Users/jenkins/coderzvision.pem")
       host        = self.public_ip
     }
   }
