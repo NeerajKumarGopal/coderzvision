@@ -66,7 +66,7 @@ resource "aws_instance" "lamp_server" {
   vpc_security_group_ids = [aws_security_group.lamp_sg.id]
 
   provisioner "file" {
-    source      = "C:/Neeraj/coderzvision-assessement/coderzvision/terraform/jenkins_key.pub"
+    source      = "C:/Neeraj/coderzvision-assessement/coderzvision/terraform/coderzvision_key.pub"
     destination = "/home/ubuntu/.ssh/authorized_keys"
 
     connection {
